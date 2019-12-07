@@ -2,7 +2,7 @@
 
 **Version 1.0**
 
-> A simple setup for for adding Gulp and Gulp-Sass to Eleventy
+> A simple setup for for adding Gulp and Gulp-Sass to Eleventy.
 
 Eleventy ([https://www.11ty.dev/](https://www.11ty.dev/)) is my favourite static site generator. But (as of v0.9.0) it doesn’t preprocess CSS.
 
