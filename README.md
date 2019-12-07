@@ -138,4 +138,4 @@ Of course, you will want some HTML.
 
 The static site generator [Eleventy can handle multiple template languages](https://www.11ty.dev/docs/), so it’s really up to you.
 
-I prefer [Nunjucks](https://mozilla.github.io/nunjucks/) these days, so in this statrter project I have included `index.njk`, with a head link to `./css/styles.css`, ready to go.
+I prefer [Nunjucks](https://mozilla.github.io/nunjucks/) these days, so in this starter project I have included `index.njk`, with a head link to `./css/styles.css`, ready to go.
