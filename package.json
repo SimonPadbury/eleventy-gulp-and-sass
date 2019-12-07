@@ -1,0 +1,17 @@
+{
+  "name": "eleventy-gulp-and-sass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Unlicence",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.9.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2"
+  }
+}
