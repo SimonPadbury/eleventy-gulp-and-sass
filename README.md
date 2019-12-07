@@ -8,7 +8,7 @@ Eleventy ([https://www.11ty.dev/](https://www.11ty.dev/)) is my favourite static
 
 One of the first things I do with every Eleventy project is add [Sass](https://sass-lang.com/), my CSS preprocessor of choice, using [Gulp](https://gulpjs.com/) and [gulp-sass](https://www.npmjs.com/package/gulp-sass).
 
-(You may want to use Gulp for running other tasks besides gulp-sass. E.g. you may want to preprocess mand/or concatenate JS, and optimise some images. So I have set up up the `gulpfile.js` to look for SCSS files in a `scss/` folder within an `_app` folder – and later you can add other things into the `_app/` folder too.)
+(You may want to use Gulp for running other tasks besides gulp-sass. E.g. you may want to preprocess and/or concatenate JS, and optimise some images. So I have set up up the `gulpfile.js` to look for SCSS files in a `scss/` folder within an `_app` folder – and later you can add other things into the `_app/` folder too.)
 
 **This below is what I already did in this preparing project repository. But I have not included the dependencies `Eleventy`, `Gulp` and `gulp-sass` here.**
 
