@@ -112,9 +112,9 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
 
 If you run Eleventy first, or run Gulp and Eleventy simultaneously the first time, Eleventy will now throw an error – because it is looking to pass through  your CSS files but you don’t have any until Gulp has generated them. So, just run gulp by itself, first:
 
-    ```JS
-    $ gulp
-    ```
+```JS
+$ gulp
+```
 
 When you see that it has created `css/styles.css` in your project root folder, you can stop Gulp by `control+C` (`^C`).
 
@@ -122,9 +122,9 @@ When you see that it has created `css/styles.css` in your project root folder, y
 
 From now on, you can run Gulp and Eleventy _in tandem_ by doing this:
 
-    ```JS
-    $ gulp & eleventy --serve
-    ```
+```JS
+$ gulp & eleventy --serve
+```
 
 Eleventy handles the file watching from the root folder and it sets up a local server, so that you can see the changes in your project’s `_sites/` folder in your browser.
 
