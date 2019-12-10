@@ -86,7 +86,7 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
 
 3. Create an `_app` folder in your project root folder, and place a `scss` folder inside it. And in the `scss/` folder, create a file named `styles.scss`. (This assumes that your gulpfile’s `cssTask()`, as in the example above, is looking for `src('./_app/scss/styles.scss')`.)
 
-4. Eleventy doesn’t do anything with CSS files by default, so you will need to Eleventy it to pass through the resultant `css/styles.css` (folder and file) into the outputted  `_site/` folder. To do this, create another file in your project root folder, named `.eleventy.js` (note the dot prefix), and then copy-paste this into it:
+4. Eleventy doesn’t do anything with CSS files by default, so you will need to tell Eleventy to pass through the resultant `css/styles.css` (folder and file) into the outputted  `_site/` folder. To do this, create another file in your project root folder, named `.eleventy.js` (note the dot prefix), and then copy-paste this into it:
 
     ```JS
     module.exports = function(eleventyConfig) {
@@ -106,7 +106,7 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
     }
     ```
 
-    So, if I see a yellow background in my first HTML page in the web browser, I know that Gulp is preprocessing my SCSS and Eleventy is passing through the resultant CSS to the `_site` folder.
+    So, if I see a yellow background in my first HTML page in the web browser, I know that Gulp is preprocessing my SCSS and Eleventy is passing through the resultant CSS to the `_site` folder. Win-win!
 
 ## Your First Gulp Run
 
