@@ -10,9 +10,9 @@ One of the first things I do with every Eleventy project is add [Sass](https://s
 
 (You may want to use Gulp for running other tasks besides gulp-sass. E.g. you may want to preprocess and/or concatenate JS, and optimise some images. So I have set up up the `gulpfile.js` to look for SCSS files in a `scss/` folder within an `_app` folder – and later you can add other things into the `_app/` folder too.)
 
-**This below is what I already did in this preparing project repository. But I have not included the dependencies `Eleventy`, `Gulp` and `gulp-sass` here.**
+**This below is what I did in preparing this project repository. But I have not included the dependencies `Eleventy`, `Gulp` and `gulp-sass` here.**
 
-**You can just download or clone this repo – and then work though the tutorial instructons below for adding `Eleventy`, `Gulp` and `gulp-sass`.**
+**You can just download or clone this repo – and then work though these tutorial instructons below for adding `Eleventy`, `Gulp` and `gulp-sass`. Or you can follow along to retro-fit Gulp` and `gulp-sass` to your already existing Eleventy project.**
 
 ---
 
