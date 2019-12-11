@@ -1,17 +1,21 @@
 const { watch, src, dest, series, parallel } = require('gulp');
 const sass = require('gulp-sass');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
 
 function cssTask() {
-  return src('./_app/scss/styles.scss')
-    .pipe(sass({ outputStyle: 'compressed' })) // or 'expanded'
-    .on('error', sass.logError)
-
-    // Eleventy `addPassthroughCopy()` looks in the root folder, where it will find this css/ folder
+  return src('./_scss/styles.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass({ outputStyle: 'compressed' })).on('error', sass.logError)
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest('./css'))
 }
 
 function watchFiles() {
-  watch('./_app/scss/**/*.scss', parallel(cssTask));
+  watch('./_scss/**/*.scss', parallel(cssTask));
 };
 
 exports.default = parallel(cssTask, watchFiles);
