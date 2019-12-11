@@ -83,7 +83,7 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
     const sourcemaps = require('gulp-sourcemaps');
 
     function cssTask() {
-      return src('./_scss/styles.scss')
+      return src('./_app/scss/styles.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'compressed' })).on('error', sass.logError)
         .pipe(postcss([autoprefixer(), cssnano()]))
@@ -98,11 +98,11 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
     exports.default = parallel(cssTask, watchFiles);
     ```
     
-    So here’s what the `cssTask()` will do: it will look in your `src()` folder for your `styles.scss`; initiate a sourcemap by tracing thorugh your SCSS and its partial files; preprocess the SCSS using the Sass preprocessor; the `postcss()` module will add some browser-specific CSS prefixes and then minify the output; finally the sourcemap will be compiled and written based on the outputted CSS.
+    So here’s what the `cssTask()` will do: it will look in your specified `src()` folder for your `styles.scss`; initiate a sourcemap by tracing thorugh your SCSS and its partial files; preprocess the SCSS using the Sass preprocessor; the `postcss()` module will add some browser-specific CSS prefixes and then minify the output; finally the sourcemap will be compiled and written based on the outputted CSS; and both the `styles.css` and `styles.css.map` will be outputted to your specified `dest()` folder.
 
-3. Create an `_app` folder in your project root folder, and place a `scss` folder inside it. And in the `scss/` folder, create a file named `styles.scss`. (This assumes that your gulpfile’s `cssTask()`, as in the example above, is looking for `src('./_app/scss/styles.scss')`.)
+3. Create an `_app` folder in your project root folder, and place a `scss/` folder inside it. And in the `scss/` folder, create a file named `styles.scss`. (This assumes that your gulpfile’s `cssTask()`, as in the example above, is looking for `src('./_app/scss/styles.scss')`.)
 
-4. Eleventy doesn’t do anything with CSS files by default, so you will need to tell Eleventy to pass through the resultant `css/styles.css` (folder and file) into the outputted  `_site/` folder. To do this, create another file in your project root folder, named `.eleventy.js` (note the dot prefix), and then copy-paste this into it:
+4. **Eleventy doesn’t do anything with CSS files by default**, so now you need to tell Eleventy to pass through the resultant `css/styles.css` (folder and file) into Eleventy’s outputted  `_site/` folder. To do this, create another file in your project root folder, named `.eleventy.js` (note the dot prefix), and then copy-paste this into it:
 
     ```JS
     module.exports = function(eleventyConfig) {
