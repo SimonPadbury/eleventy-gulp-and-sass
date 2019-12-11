@@ -1,12 +1,12 @@
 # Eleventy, Gulp and Sass
 
-**Version 1.0**
+**Version 1.1**
 
 > A simple setup for for adding Gulp and Gulp-Sass to Eleventy.
 
 Eleventy ([https://www.11ty.dev/](https://www.11ty.dev/)) is my favourite static site generator. But (as of v0.9.0) it doesn’t preprocess CSS.
 
-One of the first things I do with every Eleventy project is add [Sass](https://sass-lang.com/), my CSS preprocessor of choice, using [Gulp](https://gulpjs.com/) and [gulp-sass](https://www.npmjs.com/package/gulp-sass).
+One of the first things I do with every Eleventy project is add [Sass](https://sass-lang.com/), my CSS preprocessor of choice, using [Gulp](https://gulpjs.com/) and [gulp-sass](https://www.npmjs.com/package/gulp-sass). I also add some other useful modules such as an autoprefixer and a sourcemap genrator.
 
 (You may want to use Gulp for running other tasks besides gulp-sass. E.g. you may want to preprocess and/or concatenate JS, and optimise some images. So I have set up up the `gulpfile.js` to look for SCSS files in a `scss/` folder within an `_app` folder – and later you can add other things into the `_app/` folder too.)
 
@@ -54,35 +54,51 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
 
 ## Adding Gulp and Gulp-Sass
 
-1. Still in project root folder in your command line, add `gulp` and `gulp-sass` locally using NPM:
+1. Still in project root folder in your command line, add `gulp` and all these pakages using NPM — add them _locally_  using the `--save-dev` flag:
 
     ```JS
     $ npm install --save-dev gulp
 
+    $ npm install --save-dev cssnano
+
+    $ npm install --save-dev autoprefixer
+
     $ npm install --save-dev gulp-sass
+
+    $ npm install --save-dev gulp-postcss
+
+    $ npm install --save-dev gulp-sourcemaps
     ```
 
-    You will see that these have been added to your project’s `package.json`. And their dependencies will have been added into your project’s `node_modules/`.
+    You will see that these have been added to your project’s `package.json`. (And their dependencies will have been added into your project’s `node_modules/`.)
 
 2. Now create a file named `gulpfile.js` in your project root folder, and copy-paste all this into it:
 
     ```JS
     const { watch, src, dest, series, parallel } = require('gulp');
     const sass = require('gulp-sass');
+    const autoprefixer = require('autoprefixer');
+    const cssnano = require('cssnano');
+    const postcss = require('gulp-postcss');
+    const sourcemaps = require('gulp-sourcemaps');
 
     function cssTask() {
-      return src('./_app/scss/styles.scss')
-        .pipe(sass({ outputStyle: 'compressed' }))
-        .on('error', sass.logError)
+      return src('./_scss/styles.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass({ outputStyle: 'compressed' })).on('error', sass.logError)
+        .pipe(postcss([autoprefixer(), cssnano()]))
+        .pipe(sourcemaps.write('.'))
         .pipe(dest('./css'))
     }
 
     function watchFiles() {
-      watch('./_app/scss/**/*.scss', parallel(cssTask));
+      watch('./_scss/**/*.scss', parallel(cssTask));
     };
 
     exports.default = parallel(cssTask, watchFiles);
     ```
+    
+    So here’s what the `cssTask()` will do: it will look in your `src()` folder for your `styles.scss`; initiate a sourcemap by tracing thorugh your SCSS and its partial files; preprocess the SCSS using the Sass preprocessor; the `postcss()` module will add some browser-specific CSS prefixes and then minify the output; finally the sourcemap will be compiled and written based on the outputted CSS.
 
 3. Create an `_app` folder in your project root folder, and place a `scss` folder inside it. And in the `scss/` folder, create a file named `styles.scss`. (This assumes that your gulpfile’s `cssTask()`, as in the example above, is looking for `src('./_app/scss/styles.scss')`.)
 
@@ -134,7 +150,7 @@ Gulp will then output one file in your project root folder – `css/styles.css` 
 
 ## One More Thing...
 
-Of course, you will want some HTML.
+Of course, you will want some HTML!
 
 The static site generator [Eleventy can handle multiple template languages](https://www.11ty.dev/docs/), so it’s really up to you.
 
