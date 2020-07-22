@@ -1,20 +1,29 @@
 {
   "name": "eleventy-gulp-and-sass",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.2.0",
+  "description": "A simple starter for Eleventy, that adds Gulp-sass.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "keywords": [
+    "Eleventy",
+    "Sass",
+    "SCSS",
+    "Gulp"
+  ],
+  "author": "Simon Padbury",
+  "license": "UNLICENSE",
+  "repository": {
+    "url": "https://github.com/SimonPadbury/eleventy-gulp-and-sass"
   },
-  "keywords": [],
-  "author": "",
-  "license": "Unlicence",
   "devDependencies": {
-    "@11ty/eleventy": "^0.9.0",
+    "@11ty/eleventy": "^0.11.0",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp & npx @11ty/eleventy --serve"
   }
 }
