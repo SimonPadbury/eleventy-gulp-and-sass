@@ -1,6 +1,6 @@
 # Eleventy, Gulp and Sass
 
-**Version 1.2**
+**Version 1.3**
 
 > A simple setup for for adding Gulp and Gulp-Sass to Eleventy.
 
@@ -146,13 +146,23 @@ When you see that Gulp has created `css/styles.css` in your project root folder,
 
 ## Running Gulp and Eleventy together
 
-From now on, you can run Gulp and Eleventy _in tandem_ by doing this:
+From now on, you can run Gulp and Eleventy _in tandem_ by doing one of the following in your terminal:
+
+On a Mac:
 
 ```JS
 $ gulp & @11ty/eleventy --serve
 ```
 
-(The above assumes you want to run your local Eleventy installation, e.g. if you don’t have Eleventy installed globally — see [https://www.11ty.dev/docs/usage/](https://www.11ty.dev/docs/usage/).)
+On Windows:
+
+```JS
+$ gulp "&" @11ty/eleventy --serve
+```
+
+The two terminal commands above assume that you want to run your local Eleventy installation, e.g. if you don’t have Eleventy installed globally — see [https://www.11ty.dev/docs/usage/](https://www.11ty.dev/docs/usage/).
+
+_(I am a Mac user, and I have been informed that the `&` symbol needs to be enclosed in quotemarks or the terminal command above won’t work on Windows. See also below where I have done something similar in the `package.json` script. I would appreciate it if someone can improve upon this solution — is there one way of writing a command like this, that works both on Macs and on Windows terminals?)_
 
 Here’s what’s happening in your project, if both Gulp and Eleventy are running:
 
@@ -162,10 +172,28 @@ And you will see the changes auto-refreshed in your browser.
 
 ## Making development easier to start
 
-You probably don’t want to remember and do `gulp & @11ty/eleventy --serve` every time you start this project, so I have included a `"dev"` script in the `package.json`. So now all you need do start both Gulp and Eleventy _in tandem_ in the terminal is:
+You probably don’t want to remember and do `gulp & @11ty/eleventy --serve` every time you start this project, so I have included a `"dev"` script in the `package.json`:
+
+```JS
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp & npx @11ty/eleventy --serve",
+    "dev-win": "gulp \"&\" npx @11ty/eleventy --serve"
+}
+```
+
+So now all you need do start both Gulp and Eleventy _in tandem_ in the terminal is:
+
+On a Mac:
 
 ```JS
 $ npm run dev
+```
+
+On Windows:
+
+```JS
+$ npm run dev-win
 ```
 
 ## One more thing...
