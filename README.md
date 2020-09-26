@@ -1,14 +1,14 @@
 # Eleventy, Gulp and Sass
 
-**Version 1.3**
+**Version 1.4**
 
 > A simple setup for for adding Gulp and Gulp-Sass to Eleventy.
 
 Eleventy ([https://www.11ty.dev/](https://www.11ty.dev/)) is one of my favourite static site generators — my go-to for simple projects. But I am a fan of SCSS, and (as of v0.11.0) Eleventy doesn’t preprocess CSS.
 
-One of the first things I do with every Eleventy project is add [Sass](https://sass-lang.com/), my CSS preprocessor of choice, using [Gulp](https://gulpjs.com/) and [gulp-sass](https://www.npmjs.com/package/gulp-sass). I also add some other useful modules such as an autoprefixer and a sourcemap generator.
+Often, one of the first things I do with an Eleventy project is add [Sass](https://sass-lang.com/), my CSS preprocessor of choice, using [Gulp](https://gulpjs.com/) and [gulp-sass](https://www.npmjs.com/package/gulp-sass). I also add some other useful modules such as an autoprefixer and a sourcemap generator.
 
-(You may want to use Gulp for running other tasks besides gulp-sass. E.g. you may want to preprocess and/or concatenate JS, and optimise some images. So I have set up up the `gulpfile.js` to look for SCSS files in a `scss/` folder within an `_app` folder – and later you can add other things into the `_app/` folder too.)
+(You may want to use Gulp for running other tasks besides gulp-sass. E.g. you may want to preprocess and/or concatenate JS, and optimise some images. So I have set up up the `gulpfile.js` to look for SCSS files in a `scss/` folder within an `_assets` folder – and later you can add other things into the `_assets/` folder too.)
 
 **This below is what I did in preparing this project repository. (Node modules for Eleventy and Gulp are not included here — you will need to install these locally, in your project.)**
 
@@ -64,6 +64,8 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
 
     ```JS
     $ npm install --save-dev gulp
+
+    $ npm install --save-dev postcss
 
     $ npm install --save-dev cssnano
 
@@ -130,11 +132,11 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
     }
     ```
 
-    So, if I see a yellow background in my first HTML page in the web browser, I know that Gulp is preprocessing my SCSS and Eleventy is passing through the resultant CSS to the `_site` folder. Win-win!
+    So, if I see a yellow background in my first HTML page in the web browser, I know that Gulp is preprocessing my SCSS and Eleventy is passing through the preprocessed CSS to the `_site` folder. Win-win!
 
 ## Your first Gulp run
 
-If you run Eleventy first, or run Gulp and Eleventy simultaneously the first time, _Eleventy will now throw an error_ – because it is looking to pass through  your CSS files but you don’t have any until Gulp has generated them. So, just run gulp by itself, first:
+**Note:** if you run Eleventy first, or if you run Gulp and Eleventy simultaneously the first time, _Eleventy will now throw an error_. This is because Eleventy  is looking to pass through your CSS files — but you don’t have any until Gulp has generated them. So, just run Gulp by itself, first:
 
 ```JS
 $ gulp
