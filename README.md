@@ -104,7 +104,7 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
     exports.default = parallel(cssTask, watchFiles);
     ```
     
-    * So here’s what the `cssTask()` will do: it will look in your specified `src()` folder for your `styles.scss`; initiate a sourcemap by tracing through your SCSS and any partial files it may require to be included; preprocess the SCSS using the Sass preprocessor; the `postcss()` module will add some browser-specific CSS prefixes and then minify the output; finally the sourcemap will be compiled and written based on the outputted CSS; and both the `styles.css` and `styles.css.map` will be outputted to your specified `dest()` folder.
+    So here’s what the `cssTask()` will do: it will look in your specified `src()` folder for your `styles.scss`; initiate a sourcemap by tracing through your SCSS and any partial files it may require to be included; preprocess the SCSS using the Sass preprocessor; the `postcss()` module will add some browser-specific CSS prefixes and then minify the output; finally the sourcemap will be compiled and written based on the outputted CSS; and both the `styles.css` and `styles.css.map` will be outputted to your specified `dest()` folder.
 
 3. **If you haven’t cloned this repo:** create an `_assets` folder in your project root folder, and create a `scss/` folder inside it. And in this `scss/` folder, create a file named `style.scss`. (This assumes that your gulpfile’s `cssTask()`, as in the example above, is looking for `src('./_assets/scss/style.scss')`.)
 
