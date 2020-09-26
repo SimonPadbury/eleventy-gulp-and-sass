@@ -1,10 +1,11 @@
 {
   "name": "eleventy-gulp-and-sass",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "A simple starter for Eleventy, that adds Gulp-sass.",
   "main": "index.js",
   "keywords": [
     "Eleventy",
+    "PostCSS",
     "Sass",
     "SCSS",
     "Gulp"
@@ -16,11 +17,13 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
+    "autoprefixer": "^10.0.0",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5"
+    "gulp-postcss": "^9.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "postcss": "^8.0.9"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
