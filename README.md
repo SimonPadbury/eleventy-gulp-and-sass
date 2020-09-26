@@ -2,7 +2,7 @@
 
 **Version 1.4**
 
-> A simple setup for for adding Gulp and Gulp-Sass to Eleventy.
+> A simple setup for adding Gulp and Gulp-Sass to Eleventy.
 
 Eleventy ([https://www.11ty.dev/](https://www.11ty.dev/)) is one of my favourite static site generators — my go-to for simple projects. But I am a fan of SCSS, and (as of v0.11.0) Eleventy doesn’t preprocess CSS.
 
@@ -10,33 +10,31 @@ Often, one of the first things I do with an Eleventy project is add [Sass](https
 
 (You may want to use Gulp for running other tasks besides gulp-sass. E.g. you may want to preprocess and/or concatenate JS, and optimise some images. So I have set up up the `gulpfile.js` to look for SCSS files in a `scss/` folder within an `_assets` folder – and later you can add other things into the `_assets/` folder too.)
 
-**This below is what I did in preparing this project repository. (Node modules for Eleventy and Gulp are not included here — you will need to install these locally, in your project.)**
-
 ## Three ways to use this repository
 
-* If you want to staty from scratch, you can just download or clone this repo – and then work though these tutorial instructons below for installing everything you need, to get going.
+* If you want to start from scratch, you can just download or clone this repo – and then work though these tutorial instructons below for installing everything you need, to get going.
 
-* Alternatively, you can learn how to do this yourself, by following this [README.md](https://github.com/SimonPadbury/eleventy-gulp-and-sass/blob/master/README.md) file’s tutorial.
+* You can learn how to do this yourself, by following this [README.md](https://github.com/SimonPadbury/eleventy-gulp-and-sass/blob/master/README.md) file’s tutorial below.
 
-* Alternatively, to retro-fit Gulp, `gulp-sass` etc. to your already existing Eleventy project, you can follow along from [Adding Gulp and Gulp-Sass](#adding-gulp-and-gulp-sass).
+* You can retro-fit Gulp, `gulp-sass` etc. to your already existing Eleventy project, you can also follow the tutorial below.
 
 ## Requirements
 
-Both Eleventy and Gulp require [NodeJS](https://nodejs.org/en/). So, if you don’t already have Node (and the Node Package Manager, NPM, that comes bundled with it), you must first [download it](https://nodejs.org/en/download/) and install it.
+Both Eleventy and Gulp require [NodeJS](https://nodejs.org/en/). So, if you don’t already have it (and the Node Package Manager, NPM, that comes bundled with Node), you must first [download NodeJS](https://nodejs.org/en/download/) and install it.
 
 ## Install Gulp CLI gLobally
 
-Once you have Node and NPM, you also need to install the Gulp Command Line Interface ([Gulp-CLI](https://gulpjs.com/docs/en/getting-started/quick-start)) globally, before you can use Gulp in your project. So do this in your command line:
+Once you have Node and NPM, you can also install the Gulp Command Line Interface ([Gulp-CLI](https://gulpjs.com/docs/en/getting-started/quick-start)) globally, so that you can more easily use Gulp in any project. Do this in your command line:
 
-    ```JS
-    $ npm install --global gulp-cli
-    ```
+```JS
+$ npm install --global gulp-cli
+```
 
-Now you’re ready to start an Eleventy project — and ready to Gulp to it.
+Now you’re ready to start an Eleventy project — and ready to add Gulp and these packages to it.
 
-## Start an Eleventy project
+## Start an Eleventy project (alternatively, clone this repository)
 
-1. Create a new folder with a suitable name for your new project. Then _change directory_ into this folder, in your command line:
+1. Create a new folder with a suitable name for your new project. Then `cd` (change directory) into this folder, in your command line:
 
     ```JS
     $ cd path/to/my-project
@@ -54,13 +52,13 @@ Now you’re ready to start an Eleventy project — and ready to Gulp to it.
     $ npm install --save-dev @11ty/eleventy
     ```
 
-Further info can be found at [https://www.11ty.dev/docs/getting-started/](https://www.11ty.dev/docs/getting-started/)
+Further infoformation can be found at [https://www.11ty.dev/docs/getting-started/](https://www.11ty.dev/docs/getting-started/)
 
 After Eleventy has been installed (it takes a few sec.), you are ready to add `gulp`, `gulp-sass`, etc.
 
 ## Adding Gulp and Gulp-Sass
 
-1. Still in project root folder in your command line, add `gulp` and all these pakages using NPM — add them _locally_  using the `--save-dev` flag:
+1. Still in your project root folder in your command line, install `gulp` and all these pakages using NPM and the `--save-dev` flag:
 
     ```JS
     $ npm install --save-dev gulp
@@ -106,13 +104,13 @@ After Eleventy has been installed (it takes a few sec.), you are ready to add `g
     exports.default = parallel(cssTask, watchFiles);
     ```
     
-    * So here’s what the `cssTask()` will do: it will look in your specified `src()` folder for your `styles.scss`; initiate a sourcemap by tracing through your SCSS and its partial files; preprocess the SCSS using the Sass preprocessor; the `postcss()` module will add some browser-specific CSS prefixes and then minify the output; finally the sourcemap will be compiled and written based on the outputted CSS; and both the `styles.css` and `styles.css.map` will be outputted to your specified `dest()` folder.
+    * So here’s what the `cssTask()` will do: it will look in your specified `src()` folder for your `styles.scss`; initiate a sourcemap by tracing through your SCSS and any partial files it may require to be included; preprocess the SCSS using the Sass preprocessor; the `postcss()` module will add some browser-specific CSS prefixes and then minify the output; finally the sourcemap will be compiled and written based on the outputted CSS; and both the `styles.css` and `styles.css.map` will be outputted to your specified `dest()` folder.
 
-3. (If you haven’t cloned this repo) Create an `_assets` folder in your project root folder, and create a `scss/` folder inside it. And in this `scss/` folder, create a file named `style.scss`. (This assumes that your gulpfile’s `cssTask()`, as in the example above, is looking for `src('./_assets/scss/style.scss')`.)
+3. **If you haven’t cloned this repo:** create an `_assets` folder in your project root folder, and create a `scss/` folder inside it. And in this `scss/` folder, create a file named `style.scss`. (This assumes that your gulpfile’s `cssTask()`, as in the example above, is looking for `src('./_assets/scss/style.scss')`.)
 
     * As configured above, Gulp will preprocess (and and autoprefix, and sourcemap) your `style.scss` to become `css/style.css` in your project root folder — so that Eleventy can pick it up from there (when you have configured Eleventy, in step 4 below).
 
-4. **Eleventy doesn’t do anything with CSS files by default**, so now you need to tell Eleventy to pass through the resulting `css/style.css` (folder and file) into Eleventy’s outputted  `_site/` folder. To do this, create another file in your project root folder, named `.eleventy.js` (note the dot prefix), and then copy-paste this into it:
+4. **As mentioned above, Eleventy doesn’t do anything with CSS files by default.** So, now you need to tell Eleventy to pass through the resulting `css/style.css` (folder and file) into Eleventy’s outputted  `_site/` folder. To do this, create another file in your project root folder, named `.eleventy.js` (note the dot prefix), and then copy-paste this into it:
 
     ```JS
     module.exports = function(eleventyConfig) {
@@ -162,7 +160,7 @@ On Windows:
 $ gulp "&" @11ty/eleventy --serve
 ```
 
-The two terminal commands above assume that you want to run your local Eleventy installation, e.g. if you don’t have Eleventy installed globally — see [https://www.11ty.dev/docs/usage/](https://www.11ty.dev/docs/usage/).
+The two terminal commands above assume that you want to run your _local_ Eleventy installation. A local installation of Eleventy is recommended — see [https://www.11ty.dev/docs/usage/](https://www.11ty.dev/docs/usage/).
 
 _(I am a Mac user, and I have been informed that the `&` symbol needs to be enclosed in quotemarks or the terminal command above won’t work on Windows. See also below where I have done something similar in the `package.json` script. I would appreciate it if someone can improve upon this solution — is there one way of writing a command like this, that works both on Macs and on Windows terminals?)_
 
